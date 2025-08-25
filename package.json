@@ -1,0 +1,25 @@
+{
+  "name": "oidc-github-actions-worker",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "deploy:dev": "wrangler deploy",
+    "deploy:prd": "wrangler deploy --env production",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "test": "vitest",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.8.19",
+    "@cloudflare/workers-types": "^4.20250823.0",
+    "typescript": "^5.9.2",
+    "vitest": "~3.2.0",
+    "wrangler": "^4.25.0"
+  },
+  "dependencies": {
+    "hono": "^4.9.4",
+    "jose": "^5.10.0"
+  }
+}

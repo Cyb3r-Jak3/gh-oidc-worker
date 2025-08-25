@@ -1,0 +1,15 @@
+{
+  "app_id": "ENV:APP_ID",
+  "private_key": "ENV:PRIVATE_KEY",
+  "allowed_repos": {
+    "Cyb3r-Jak3/helm-repo": {
+      "workflows": ["get-charts.yml"],
+      "source": ["Cyb3r-Jak3/oidc-test-repo", "Cyb3r-Jak3/helm-cloudflared"]
+  },
+  "Cyb3r-Jak3/oidc-test-repo": {
+    "workflows": ["test.yml"],
+    "source": ["Cyb3r-Jak3/oidc-test-repo"]
+  }
+}
+}
+

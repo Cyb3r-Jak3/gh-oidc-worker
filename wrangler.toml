@@ -1,0 +1,28 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "oidc-github-actions-worker"
+main = "src/index.ts"
+compatibility_date = "2024-08-21"
+compatibility_flags = ["nodejs_compat", "no_nodejs_compat_v2"]
+workers_dev = false
+
+kv_namespaces = [
+    { binding = "KV", id = "8065f6815b8b4d1ba62066d387f0b7d2"}
+]
+
+[env.production]
+logpush = true
+workers_dev = false
+upload_source_maps = true 
+kv_namespaces = [
+    { binding = "KV", id = "18936835d1434580957a15f3e14628e7"}
+]
+routes = [
+    {pattern = "github-oidc-worker.cyberjake.xyz", custom_domain=true }
+]
+
+[observability.logs]
+enabled = true
+
+
+
+
