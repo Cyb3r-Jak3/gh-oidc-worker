@@ -6,7 +6,7 @@ export async function CheckRepoAccess(check: Check): Promise<boolean> {
     if (!check.source || !check.targetRepo || !check.targetWorkflow) {
         return false
     }
-    const allowedRepos = config.allowed_repos
+    const allowedRepos: Record<string, { workflows: string[]; source: string[] }> = config.allowed_repos
     if (!allowedRepos) {
         console.error("No allowed repos in config")
         return false
