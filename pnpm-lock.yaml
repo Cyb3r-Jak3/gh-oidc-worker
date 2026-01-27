@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       hono:
-        specifier: ^4.9.4
-        version: 4.11.5
+        specifier: ^4.11.7
+        version: 4.11.7
       jose:
         specifier: ^5.10.0
         version: 5.10.0
@@ -1156,8 +1156,8 @@ packages:
   glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
 
-  hono@4.11.5:
-    resolution: {integrity: sha512-WemPi9/WfyMwZs+ZUXdiwcCh9Y+m7L+8vki9MzDw3jJ+W9Lc+12HGsd368Qc1vZi1xwW8BWMMsnK5efYKPdt4g==}
+  hono@4.11.7:
+    resolution: {integrity: sha512-l7qMiNee7t82bH3SeyUCt9UF15EVmaBvsppY2zQtrbIhl/yzBTny+YUxsVjSjQ6gaqaeVtZmGocom8TzBlA4Yw==}
     engines: {node: '>=16.9.0'}
 
   is-arrayish@0.3.4:
@@ -2244,7 +2244,7 @@ snapshots:
 
   glob-to-regexp@0.4.1: {}
 
-  hono@4.11.5: {}
+  hono@4.11.7: {}
 
   is-arrayish@0.3.4: {}
 
