@@ -8,7 +8,7 @@ preview_urls = false
 kv_namespaces = [
     { binding = "KV", id = "8065f6815b8b4d1ba62066d387f0b7d2"}
 ]
-
+send_metrics = false
 [env.production]
 logpush = true
 workers_dev = false
@@ -21,17 +21,16 @@ routes = [
     {pattern = "github-oidc-worker.cyberjake.xyz", custom_domain=true }
 ]
 
-
-
 [env.production.observability.logs]
 enabled = true
 head_sampling_rate = 1
 persist = true
 invocation_logs = true
+destinations = [ "rackspace-loki" ]
 
 [env.production.observability.traces]
 enabled = true
-destinations = [ "grafana-cloud-tempo" ]
+destinations = [ "rackspace-tempo" ]
 persist = true
 head_sampling_rate = 1
 

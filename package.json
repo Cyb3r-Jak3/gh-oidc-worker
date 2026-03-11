@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "deploy:dev": "wrangler deploy",
+    "deploy:dev": "wrangler deploy --env=",
     "deploy:prd": "wrangler deploy --env production",
     "dev": "wrangler dev",
     "start": "wrangler dev",
