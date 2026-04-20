@@ -3,7 +3,6 @@ import type { Context } from 'hono'
 export type DefinedContext = Context<{ Bindings: ENV }>
 
 export type ENV = {
-    KV: KVNamespace;
     APP_ID?: string;
     PRIVATE_KEY?: string;
 }

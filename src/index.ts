@@ -8,41 +8,73 @@ import { importPrivateKey } from './github_utils';
 
 async function GenerateGithubToken(c: DefinedContext): Promise<string> {
 	const env = c.env
-	let githubToken = await env.KV.get('githubToken', { type: 'text' })
-	if (githubToken === null || githubToken === "") {
-		if (!config.private_key) {
-			console.error("No private key in config")
-			return ""
-		}
-		let privateKeyString: string = config.private_key
-		if (privateKeyString === "ENV:PRIVATE_KEY" && env.PRIVATE_KEY) {
-			privateKeyString = env.PRIVATE_KEY
-		}
-		if (!privateKeyString) {
-			console.error("No private key in config")
-			return ""
-		}
-		if (!config.app_id) {
-			console.error("No app ID in config")
-			return ""
-		}
-		let appID: string = config.app_id
-		if (config.app_id === "ENV:APP_ID" && env.APP_ID) {
-			appID = env.APP_ID
-		}
-		const privateKey = await importPrivateKey(privateKeyString)
-		githubToken = await new jose.SignJWT({
-			iss: appID,
-			iat: new Date().getTime() / 1000,
-		}).setProtectedHeader({ alg: 'RS256' })
-		.setExpirationTime('10m')
-		.sign(privateKey)
-		if (!githubToken || githubToken === "") {
-			console.error("Failed to sign token")
-			return ""
-		}
-		c.executionCtx.waitUntil(env.KV.put('githubToken', githubToken, { expirationTtl: 60 * 9 }))
+	// let githubToken = await env.KV.get('githubToken', { type: 'text' })
+	// if (githubToken === null || githubToken === "") {
+	// 	if (!config.private_key) {
+	// 		console.error("No private key in config")
+	// 		return ""
+	// 	}
+	// 	let privateKeyString: string = config.private_key
+	// 	if (privateKeyString === "ENV:PRIVATE_KEY" && env.PRIVATE_KEY) {
+	// 		privateKeyString = env.PRIVATE_KEY
+	// 	}
+	// 	if (!privateKeyString) {
+	// 		console.error("No private key in config")
+	// 		return ""
+	// 	}
+	// 	if (!config.app_id) {
+	// 		console.error("No app ID in config")
+	// 		return ""
+	// 	}
+	// 	let appID: string = config.app_id
+	// 	if (config.app_id === "ENV:APP_ID" && env.APP_ID) {
+	// 		appID = env.APP_ID
+	// 	}
+	// 	const privateKey = await importPrivateKey(privateKeyString)
+	// 	githubToken = await new jose.SignJWT({
+	// 		iss: appID,
+	// 		iat: new Date().getTime() / 1000,
+	// 	}).setProtectedHeader({ alg: 'RS256' })
+	// 	.setExpirationTime('10m')
+	// 	.sign(privateKey)
+	// 	if (!githubToken || githubToken === "") {
+	// 		console.error("Failed to sign token")
+	// 		return ""
+	// 	}
+	// 	c.executionCtx.waitUntil(env.KV.put('githubToken', githubToken, { expirationTtl: 60 * 9 }))
+	// }
+	let githubToken: string = ""
+	if (!config.private_key) {
+		console.error("No private key in config")
+		return ""
 	}
+	let privateKeyString: string = config.private_key
+	if (privateKeyString === "ENV:PRIVATE_KEY" && env.PRIVATE_KEY) {
+		privateKeyString = env.PRIVATE_KEY
+	}
+	if (!privateKeyString) {
+		console.error("No private key in config")
+		return ""
+	}
+	if (!config.app_id) {
+		console.error("No app ID in config")
+		return ""
+	}
+	let appID: string = config.app_id
+	if (config.app_id === "ENV:APP_ID" && env.APP_ID) {
+		appID = env.APP_ID
+	}
+	const privateKey = await importPrivateKey(privateKeyString)
+	githubToken = await new jose.SignJWT({
+		iss: appID,
+		iat: new Date().getTime() / 1000,
+	}).setProtectedHeader({ alg: 'RS256' })
+	.setExpirationTime('10m')
+	.sign(privateKey)
+	if (!githubToken || githubToken === "") {
+		console.error("Failed to sign token")
+		return ""
+		}
 	return githubToken
 }
 

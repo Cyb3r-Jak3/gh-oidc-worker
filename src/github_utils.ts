@@ -5,7 +5,7 @@ export const importAlgo = {
 
 
 // From https://github.com/mdn/dom-examples/blob/085b5952ccc3171b1075c4027868b191a745d3cf/web-crypto/import-key/pkcs8.js
-function str2ab(str: string) {
+function str2ab(str: string): ArrayBuffer {
     const buf = new ArrayBuffer(str.length);
     const bufView = new Uint8Array(buf);
     for (let i = 0, strLen = str.length; i < strLen; i++) {
